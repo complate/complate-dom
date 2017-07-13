@@ -1,23 +1,23 @@
 {
-  "name": "complate-dom",
-  "version": "1.0.0",
-  "description": "native-DOM implementation for JSX",
-  "author": "FND",
-  "license": " Apache-2.0",
-  "homepage": "https://github.com/complate/complate-dom",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/complate/complate-dom.git"
-  },
-  "bugs": {
-    "url": "https://github.com/complate/complate-dom/issues"
-  },
-  "module": "index.js",
-  "scripts": {
-    "test": "eslint --cache *.js && echo ✓"
-  },
-  "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-fnd": "^1.1.0"
-  }
+	"name": "complate-dom",
+	"version": "1.0.0",
+	"description": "native-DOM implementation for JSX",
+	"author": "FND",
+	"license": " Apache-2.0",
+	"homepage": "https://github.com/complate/complate-dom",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/complate/complate-dom.git"
+	},
+	"bugs": {
+		"url": "https://github.com/complate/complate-dom/issues"
+	},
+	"module": "index.js",
+	"scripts": {
+		"test": "eslint --cache *.js && echo ✓"
+	},
+	"devDependencies": {
+		"eslint": "^3.19.0",
+		"eslint-config-fnd": "^1.1.0"
+	}
 }
