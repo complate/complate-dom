@@ -11,30 +11,37 @@ export default function createElement(tag, params, ...children) {
 	let node = document.createElement(tag);
 	Object.keys(params).forEach(param => {
 		let value = params[param];
+		switch(value) {
 		// special-casing for node references
-		if(param === "ref") {
+		case "ref":
 			let [registry, name] = value;
 			registry[name] = node;
-			return;
-		}
+			break;
+		// blank attributes
+		case null:
+		case undefined:
+			break;
 		// boolean attributes (e.g. `<input … autofocus>`)
-		if(value === true) {
-			value = "";
-		} else if(value === false) {
-			return;
-		}
+		case true:
+			node.setAttribute(param, "");
+			break;
+		case false:
+			break;
 		// attributes vs. properties
-		if(value.substr) {
-			node.setAttribute(param, value);
-		} else {
-			node[param] = value;
+		default:
+			if(value.substr) {
+				node.setAttribute(param, value);
+			} else {
+				node[param] = value;
+			}
 		}
 	});
 
 	// JSX-specific adjustments:
-	// * discarding blank values for convenience
+	// * discarding blank values to avoid conditionals within JSX (passing
+	//   `undefined`/`null`/`false` is much simpler)
 	// * `children` might contain nested arrays due to the use of
-	//   collections within JSX (`{items.map(item => <span>item</span>)}`)
+	//   collections within JSX (`{items.map(item => <span>{item}</span>)}`)
 	flatCompact(children).forEach(child => {
 		if(child.substr || (typeof child === "number")) {
 			child = document.createTextNode(child);
