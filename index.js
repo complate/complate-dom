@@ -7,6 +7,10 @@ export default function createElement(element, params, ...children) {
 	/* eslint-enable indent */
 }
 
+export function Fragment(_, ...children) {
+	return children;
+}
+
 // generates a DOM element (signature determined by JSX)
 // `params` describe attributes and/or properties, as determined by the
 // respective type (string or boolean attributes vs. arbitrary properties)
