@@ -1,3 +1,12 @@
+// distinguishes macros from regular tags
+export default function createElement(element, params, ...children) {
+	/* eslint-disable indent */
+	return element.call ?
+			element(params === null ? {} : params, ...flatCompact(children)) :
+			createNode(element, params, ...children);
+	/* eslint-enable indent */
+}
+
 // generates a DOM element (signature determined by JSX)
 // `params` describe attributes and/or properties, as determined by the
 // respective type (string or boolean attributes vs. arbitrary properties)
@@ -5,7 +14,7 @@
 // tuple; `refs[id]` will be assigned the respective DOM node
 // `children` is an array of strings, numbers or DOM elements
 // adapted from uitil <https://github.com/FND/uitil>
-export default function createElement(tag, params, ...children) {
+export function createNode(tag, params, ...children) {
 	params = params || {};
 
 	let node = document.createElement(tag);
