@@ -48,7 +48,7 @@ export default function createElement(tag, params, ...children) {
 // flatten array while discarding blank values
 function flatCompact(items) {
 	return items.reduce((memo, item) => {
-		return item === null || item === undefined ? memo :
-				memo.concat(item.pop ? flatCompact(item) : item);
+		let blank = item === null || item === undefined;
+		return blank ? memo : memo.concat(item.pop ? flatCompact(item) : item);
 	}, []);
 }

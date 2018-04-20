@@ -1,6 +1,6 @@
 {
 	"name": "complate-dom",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "native-DOM implementation for JSX",
 	"author": "FND",
 	"license": "Apache-2.0",
@@ -16,9 +16,9 @@
 	"scripts": {
 		"test": "eslint --cache *.js && echo ✓"
 	},
+	"dependencies": {},
 	"devDependencies": {
-		"eslint": "^3.19.0",
-		"eslint-config-fnd": "^1.1.0",
-		"release-util-fnd": "^1.0.0"
+		"eslint-config-fnd": "^1.3.0",
+		"release-util-fnd": "^1.1.1"
 	}
 }
