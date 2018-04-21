@@ -1,3 +1,5 @@
+let BLANKS = [undefined, null, false];
+
 // distinguishes macros from regular tags
 export default function createElement(element, params, ...children) {
 	/* eslint-disable indent */
@@ -65,10 +67,12 @@ export function createNode(tag, params, ...children) {
 	return node;
 }
 
-// flatten array while discarding blank values
+// flattens array while discarding blank values
 function flatCompact(items) {
 	return items.reduce((memo, item) => {
-		let blank = item === null || item === undefined;
-		return blank ? memo : memo.concat(item.pop ? flatCompact(item) : item);
+		/* eslint-disable indent */
+		return BLANKS.indexOf(item) !== -1 ? memo :
+				memo.concat(item.pop ? flatCompact(item) : item);
+		/* eslint-enable indent */
 	}, []);
 }
