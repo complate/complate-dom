@@ -9,6 +9,19 @@ export default function createElement(element, params, ...children) {
 	/* eslint-enable indent */
 }
 
+// renders `macro` into `container`, replacing any previous child elements
+export function render(macro, params, container) {
+	let nodes = macro(params);
+	if(!nodes.pop) {
+		nodes = [nodes];
+	}
+
+	container.innerHTML = "";
+	nodes.forEach(node => {
+		container.appendChild(node);
+	});
+}
+
 export function Fragment(_, ...children) {
 	return children;
 }
