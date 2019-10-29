@@ -35,14 +35,15 @@ export function Fragment(_, ...children) {
 // adapted from uitil <https://github.com/FND/uitil>
 export function createNode(tag, params, ...children) {
 	params = params || {};
+	let { is } = params;
 
-	let node = document.createElement(tag);
+	let node = document.createElement(tag, is && { is });
 	Object.keys(params).forEach(param => {
 		let value = params[param];
 		switch(value) {
 		// special-casing for node references
 		case "ref":
-			let [registry, name] = value;
+			var [registry, name] = value; // eslint-disable-line no-var
 			registry[name] = node;
 			break;
 		// blank attributes
