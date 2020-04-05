@@ -44,8 +44,10 @@ export function createNode(tag, params, ...children) {
 		switch(param) {
 		// special-casing for node references
 		case "ref":
-			var [registry, name] = value; // eslint-disable-line no-var
-			registry[name] = node;
+			if (value) {
+				var [registry, name] = value; // eslint-disable-line no-var
+				registry[name] = node;
+			}
 			return;
 		}
 
