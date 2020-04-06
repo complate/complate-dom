@@ -40,12 +40,12 @@ export function createNode(tag, params, ...children) {
 	let node = document.createElement(tag, is && { is });
 	Object.keys(params).forEach(param => {
 		let value = params[param];
-		switch(value) {
-		// special-casing for node references
-		case "ref":
-			var [registry, name] = value; // eslint-disable-line no-var
+		if(param === "ref") { // special-casing for node references
+			let [registry, name] = value;
 			registry[name] = node;
-			break;
+			return;
+		}
+		switch(value) {
 		// blank attributes
 		case null:
 		case undefined:
